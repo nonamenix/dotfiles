@@ -38,7 +38,7 @@ myConfig = gnomeConfig
     , borderWidth = 1
     , focusedBorderColor = myFocusedBorderColor
     , normalBorderColor = myNormalBorderColor
-    , layoutHook = desktopLayoutModifiers $ myLayoutHook
+    , layoutHook = desktopLayoutModifiers myLayoutHook
     , manageHook = myManageHook <+> manageHook gnomeConfig
     , handleEventHook = fullscreenEventHook `mappend` handleEventHook gnomeConfig
     , XMonad.focusFollowsMouse = True
@@ -50,14 +50,12 @@ myConfig = gnomeConfig
  
 modm = mod4Mask
  
-myTabConfig = defaultTheme 
-    { inactiveBorderColor   = "#242424"
-    , inactiveColor         = "#242424"
-    , inactiveTextColor     = "#ffffff"
-    , activeBorderColor     = "#b22222"
-    , activeColor           = "#242424"
-    , activeTextColor       = "#ffffff" 
-    }
+myTabConfig = def { inactiveBorderColor   = "#242424"
+                  , inactiveColor         = "#242424"
+                  , inactiveTextColor     = "#ffffff"
+                  , activeBorderColor     = "#b22222"
+                  , activeColor           = "#242424"
+                  , activeTextColor       = "#ffffff"}
  
 myLayoutHook = onWorkspace "9:im" pidginLayout 
     $ onWorkspace "8:skype" skypeLayout
@@ -68,8 +66,8 @@ myLayoutHook = onWorkspace "9:im" pidginLayout
     where
         additionalDisplayLayout = Mirror ( smartBorders (Tall nmaster delta 0.65) ) ||| Mirror ( ThreeColMid 1 (3/100) (1/2))
         pidginLayout = withIM (18/100) (Role "buddy_list") Grid 
-        skypeLayout = withIM (18/100) (skypeRoster) Grid 
-        gridLayout = spacing 8 $ Grid
+        skypeLayout = withIM (18/100) skypeRoster Grid 
+        gridLayout = spacing 8 Grid
         ideLayout = myFull ||| smartBorders (Tall nmaster  delta 0.75) ||| myTall 
         gimpLayout = myFull
 
@@ -77,7 +75,7 @@ myLayoutHook = onWorkspace "9:im" pidginLayout
         myTabbed = smartBorders (tabbed shrinkText myTabConfig)
         myTall = smartBorders (Tall nmaster delta ratio)
         myGrid = smartBorders Grid
- 
+
         skypeRoster = ClassName "Skype" `And` Not (Role "ConversationsWindow")
         
         nmaster = 1 -- count of windows in master layout
@@ -91,26 +89,25 @@ myManageHook = composeAll
     , className =? "MPlayer" --> doFloat
     , className =? "jetbrains-pycharm" --> doShift "1:ide"
     , resource  =? "gpicview" --> doFloat
-	, title     =? "VLC media player" --> doFloat
+    , title     =? "VLC media player" --> doFloat
     , title     =? "VLC (XVideo output)" --> doFullFloat
     , isFullscreen --> doFullFloat
-     
     , manageDocks
-    ] 
+    ]
  
 myKeys = 
     [ -- System hotkeys
-	  ((modm .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
-	, ((modm .|. controlMask, xK_q), spawn "gnome-session-quit")
+      ((modm .|. controlMask, xK_l), spawn "mate-screensaver-command -l")
+    , ((modm .|. controlMask, xK_q), spawn "mate-session-quit")
  
     -- Application's hotkeys
     , ((modm .|. controlMask, xK_e), spawn "caja --browser /home/d_ivanof/")
-    , ((modm .|. controlMask, xK_w), spawn "google-chrome")
+    , ((modm .|. controlMask, xK_w), spawn "google-chrome-stable ")
     , ((modm .|. controlMask, xK_m), spawn "thunderbird")
-    , ((modm .|. controlMask, xK_p), spawn "pidgin")
+    -- , ((modm .|. controlMask, xK_p), spawn "pidgin")
     , ((modm .|. controlMask, xK_i), spawn "pycharm")
 
  
     -- Another hotkeys 
-    , ((modm, xK_p), shellPrompt defaultXPConfig)
+    , ((modm, xK_p), shellPrompt def)
     ]
