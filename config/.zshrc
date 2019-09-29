@@ -106,3 +106,5 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
+
+# [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

@@ -1,42 +1,41 @@
 - clean: ["~"]
 
 - shell:
-    - [git submodule update --init --recursive, Installing submodules]
+      - [git submodule update --init --recursive, Installing submodules]
 
 - link:
-    # Terminal:
-    ~/.shell:
-      path: shell
-      create: true
-    ~/.shell_env: config/shell_env
-    ~/.bash_profile: config/bash_profile
-    ~/.bashrc: config/.bashrc
-    ~/.zshrc: config/.zshrc
-    # ~/.hushlogin: config/hushlogin
-    ~/.antibody: config/antibody.txt
+      # Terminal:
+      ~/.shell:
+          path: shell
+          create: true
+      ~/.shell_env: config/shell_env
+      ~/.bash_profile: config/bash_profile
+      ~/.bashrc: config/.bashrc
+      ~/.zshrc: config/.zshrc
+      # ~/.hushlogin: config/hushlogin
+      ~/.antibody: config/antibody.txt
 
-    # SSH:
-    ~/.ssh/config: config/.ssh_config
+      # SSH:
+      ~/.ssh/config: config/ssh_config
 
-    # Git:
-    ~/.gitconfig: config/.gitconfig
-    ~/.gitignore_global: config/.gitignore
+      # Git:
+      ~/.gitconfig: config/.gitconfig
+      ~/.gitignore_global: config/.gitignore
 
-    # Tools:
-    ~/.psqlrc: config/.psqlrc
+      # Tools:
+      ~/.psqlrc: config/.psqlrc
 
-    # Editors:
-    ~/.editorconfig: config/.editorconfig
-    ~/.nanorc: config/.nanorc
-
+      # Editors:
+      ~/.editorconfig: config/.editorconfig
+      ~/.nanorc: config/.nanorc
 # Installing dependencies:
 # - brewfile:
 #     file: Brewfile
 #     no-upgrage: true
 
 # These links should be created after everything is installed:
-- link:
-    ~/.gnupg/gpg-agent.conf: config/.gpgagent
+# - link:
+#     ~/.gnupg/gpg-agent.conf: config/.gpgagent
 # Setting up vscode:
 # - link:
 #     # vscode:
