@@ -20,7 +20,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 # These lines should be the first ones
 
 # GPG agent:
-PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+# PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 
 # Adds `pipsi` and `pipx` binary files:
 PATH="$HOME/.local/bin:$PATH"
@@ -43,8 +43,8 @@ export PATH
 export EDITOR=$(which nano)
 
 # GPG:
-export GPG_TTY=$(tty)
-eval "$(gpg-agent --daemon --allow-preset-passphrase > /dev/null 2>&1)"
+# export GPG_TTY=$(tty)
+# eval "$(gpg-agent --daemon --allow-preset-passphrase > /dev/null 2>&1)"
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8'
