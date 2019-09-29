@@ -1,0 +1,26 @@
+functions -c fish_prompt _old_fish_prompt
+set VIRTUALFISH_ACTIVATION_FILE ".venv-fish"
+
+
+function fish_prompt
+  set duration (math -s6 "$CMD_DURATION / 1000")
+  ~/go/bin/powerline-go -error $status  -duration $duration -shell bare -newline --cwd-max-depth 3
+end
+
+function deploy
+  vf activate deploy
+  cd ~/Deploy/web_deploy/
+end
+
+function deploy_update
+  vf activate deploy;
+  cd ~/Deploy/mini_fabrics;
+  git checkout master;
+  git pull origin master;
+  cd ../staging_configs/;
+  git pull origin master;
+  cd ../web_deploy/;
+  git pull origin master;
+end
+
+eval (python -m virtualfish auto_activation global_requirements)

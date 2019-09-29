@@ -7,4 +7,3 @@
 [submodule "dotbot-pip"]
 	path = dotbot-pip
 	url = https://github.com/sobolevn/dotbot-pip.git
-  
