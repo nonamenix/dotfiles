@@ -53,7 +53,7 @@ plugins=(
   pip 
   colorize 
   virtualenv 
-  virtualenvwrapper 
+  # virtualenvwrapper 
   colorize
   docker
   docker-compose
@@ -72,7 +72,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export GOPATH="~/go"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/go/bin"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -88,23 +89,24 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export PATH="/snap/bin $HOME/go/bin $PATH"
 
 
-# function powerline_precmd() {
-#     PS1="$($GOPATH/bin/powerline-go -error $? -shell zsh)"
-# }
+function powerline_precmd() {
+  PS1="$(~/go/bin/powerline-go -error $status -modules time,venv,docker,user,host,ssh,cwd,perms,jobs,gitlite,exit,root  -duration 1 -shell bare -newline --cwd-max-depth 3 -numeric-exit-codes)"
+}
 
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#   done
-#   precmd_functions+=(powerline_precmd)
-# }
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
 
-# if [ "$TERM" != "linux" ]; then
-#     install_powerline_precmd
-# fi
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
 
 # [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

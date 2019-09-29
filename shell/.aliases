@@ -31,7 +31,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Copy public key to clipboard:
 alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
-
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias s='subl'
 alias ss = "sudo subl"
